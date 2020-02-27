@@ -1,0 +1,44 @@
+version: '3.3'
+  
+services:
+  i2b2_deployment1:
+    image: honghan/i2b2-deployment
+    volumes:
+      - jboss_home1:/working/i2b2/jboss
+      - setting_folder1:/working/i2b2/settings
+      - admin_apps1:/working/i2b2/admin_web
+      - i2b2_client1:/working/i2b2/web_client_web
+    command: ["deploy_i2b2.sh", "-load", "-deploy"]
+
+volumes:
+  i2b2db_data1:
+    driver_opts:
+      type: none
+      device: /home/chuang/data/i2b2.instance1/postgreslab
+      #device: /data/postgreslab
+      o: bind
+  jboss_apps1:
+    driver_opts:
+      type: none
+      device: /home/chuang/data/i2b2.instance1/jboss_apps/standalone/deployments
+      o: bind
+  jboss_home1:
+    driver_opts:
+      type: none
+      device: /home/chuang/data/i2b2.instance1/jboss_apps/
+      o: bind
+  admin_apps1:
+    driver_opts:
+      type: none
+      device: /home/chuang/data/i2b2.instance1/i2b2_admin
+      o: bind
+  setting_folder1:
+    driver_opts:
+      type: none
+      device: /home/chuang/data/i2b2.instance1/settings
+      o: bind
+  i2b2_client1:
+    driver_opts:
+      type: none
+      device: /home/chuang/data/i2b2.instance1/i2b2_client
+      o: bind
